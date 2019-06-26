@@ -1,4 +1,4 @@
-{% for config_entry in config %}# HELP fastly_{{config_entry.key}} {{config_entry.help}}
-# TYPE fastly_{{config_entry.key}} counter{% for entry in entries %}{% for datacenter, data in entry.metric.datacenter.items() %}
-fastly_{{config_entry.key}}{datacenter="{{datacenter}}",service_id="{{entry.id}}",service_name="{{entry.name}}"} {{data[config_entry.key] or 0}} {{entry.metric.recorded}}000{% endfor %}{% endfor %}
+{% for config_entry in config %}# HELP fastly_{{config_entry.key}}_total {{config_entry.help}}
+# TYPE fastly_{{config_entry.key}}_total counter{% for entry in entries %}{% for datacenter, data in entry.metric.datacenter.items() %}
+fastly_{{config_entry.key}}_total{datacenter="{{datacenter}}",service_id="{{entry.id}}",service_name="{{entry.name}}"} {{data[config_entry.key] or 0}} {{entry.metric.recorded}}000{% endfor %}{% endfor %}
 {% endfor %}
